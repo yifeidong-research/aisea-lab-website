@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import { lab, researchThemes } from '../content/site';
+---
+<Base>
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">{lab.affiliation}</p>
+        <h1>{lab.name}</h1>
+        <p class="lead">{lab.mission}</p>
+        <div class="actions">
+          <a class="button" href="/research/">Explore our research <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="/contact/">Get in touch <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="signal-field"><i></i><i></i><i></i><i></i><i></i><i></i><b></b><b></b><b></b><b></b></div>
+      </div>
+    </div>
+  </section>
+  <section class="wrap section">
+    <div class="programme">
+      <div>
+        <p class="eyebrow">Flagship programme</p>
+        <h2>{lab.programme}</h2>
+      </div>
+      <div>
+        <p>What does it take to put a generative AI prototype into service? The programme focuses on readiness criteria, evaluation under realistic conditions and monitoring after deployment.</p>
+        <a class="text-link" href="/projects/#flagship">Explore the programme <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+  <section class="wrap section themes-section">
+    <h2>Research themes</h2>
+    <div class="theme-grid">
+      {researchThemes.map(({ title, summary }, index) => (
+        <article>
+          <h3><a href={`/research/#theme-${index + 1}`}>{title} <span aria-hidden="true">↗</span></a></h3>
+          <p>{summary}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</Base>

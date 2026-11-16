@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { researchThemes } from '../content/site';
+const description = 'We study how intelligent systems are designed, evaluated and operated across domains and throughout their lifecycle.';
+---
+<Base title="Research" description={description}>
+  <div class="wrap section interior">
+    <PageIntro title="Research" description={description} />
+    <div class="rows">
+      {researchThemes.map(({ title, detail }, index) => (
+        <section id={`theme-${index + 1}`} class="content-row">
+          <h2>{title}</h2><p>{detail}</p>
+        </section>
+      ))}
+    </div>
+    <a class="text-link" href="/projects/#flagship">See the flagship programme <span aria-hidden="true">↗</span></a>
+  </div>
+</Base>

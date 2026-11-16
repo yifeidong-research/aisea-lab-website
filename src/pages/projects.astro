@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { lab, programmeTopics, projects } from '../content/site';
+---
+<Base title="Projects" description="Programmes and projects at the AI-SEA Lab.">
+  <div class="wrap section interior">
+    <PageIntro title="Projects" description="The lab’s research programmes and project portfolio." />
+    <section class="programme project-programme" id="flagship">
+      <div><p class="eyebrow">Flagship programme</p><h2>{lab.programme}</h2></div>
+      <p>The programme examines the engineering practices and evidence needed to move generative AI prototypes into dependable operation.</p>
+    </section>
+    <div class="theme-grid">
+      {programmeTopics.map(({ title, detail }) => <article><h3>{title}</h3><p>{detail}</p></article>)}
+    </div>
+    <section class="project-list">
+      <h2>Individual projects</h2>
+      {projects.length ? (
+        <ul class="record-list">{projects.map(({ title, description, url }) =>
+          <li><h3>{url ? <a href={url}>{title}</a> : title}</h3><p>{description}</p></li>
+        )}</ul>
+      ) : (
+        <p class="placeholder"><strong>Placeholder</strong> · Individual project profiles will appear here once confirmed.</p>
+      )}
+    </section>
+  </div>
+</Base>

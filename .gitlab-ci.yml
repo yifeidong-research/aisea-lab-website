@@ -1,0 +1,37 @@
+stages:
+  - build
+  - deploy
+
+default:
+  image: node:22-bookworm-slim
+
+variables:
+  ASTRO_TELEMETRY_DISABLED: "1"
+
+build:
+  stage: build
+  script:
+    - npm ci
+    - npm run check
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 7 days
+
+deploy_azure:
+  stage: deploy
+  needs:
+    - job: build
+      artifacts: true
+  resource_group: azure-static-web-app
+  environment:
+    name: azure-test
+    url: $AZURE_SWA_URL
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED == "true" && $CI_PIPELINE_SOURCE != "merge_request_event" && $AZURE_SWA_URL'
+  script:
+    - 'test -n "$SWA_CLI_DEPLOYMENT_TOKEN" || { echo "Set the protected deployment token for azure-test."; exit 1; }'
+    - env -u SWA_CLI_DEPLOYMENT_TOKEN npm install --prefix /tmp/aisea-swa --no-audit --no-fund @azure/static-web-apps-cli@2.1.0
+    - /tmp/aisea-swa/node_modules/.bin/swa deploy ./dist --env production --verbose silent
+    - node scripts/verify-deployment.mjs

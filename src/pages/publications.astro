@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { publications } from '../content/site';
+---
+<Base title="Publications" description="Research outputs from the AI-SEA Lab.">
+  <div class="wrap section interior">
+    <PageIntro title="Publications" description="Papers and research outputs from the lab." />
+    {publications.length ? (
+      <ul class="record-list">{[...publications].sort((a, b) => b.year - a.year).map(({ title, authors, venue, year, url }) =>
+        <li><h2>{url ? <a href={url}>{title}</a> : title}</h2><p>{authors} · {venue} · {year}</p></li>
+      )}</ul>
+    ) : (
+      <p class="placeholder"><strong>Placeholder</strong> · Publication records will be added as they are confirmed.</p>
+    )}
+  </div>
+</Base>

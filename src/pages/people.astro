@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { people } from '../content/site';
+---
+<Base title="People" description="People at the AI-SEA Lab.">
+  <div class="wrap section interior">
+    <PageIntro title="People" description="Meet the researchers and students contributing to the AI-SEA Lab." />
+    {people.length ? (
+      <ul class="record-list">{people.map(({ name, role, profileUrl }) =>
+        <li><h2>{profileUrl ? <a href={profileUrl}>{name}</a> : name}</h2><p>{role}</p></li>
+      )}</ul>
+    ) : (
+      <p class="placeholder"><strong>Placeholder</strong> · Lab profiles will be added once approved for publication.</p>
+    )}
+  </div>
+</Base>

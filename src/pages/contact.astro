@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { contactEmail, lab } from '../content/site';
+---
+<Base title="Contact" description="Contact the AI-SEA Lab about research and collaboration.">
+  <div class="wrap section interior">
+    <PageIntro title="Contact" description="Research enquiries, collaboration and opportunities to work with the lab." />
+    <section class="content-row contact-row">
+      <h2>{lab.affiliation}</h2>
+      <div>
+        <p>University of Technology Sydney<br />Sydney, Australia</p>
+        {contactEmail ? (
+          <a class="text-link" href={`mailto:${contactEmail}`}>{contactEmail}</a>
+        ) : (
+          <p class="placeholder"><strong>Placeholder</strong> · A dedicated lab email address will be added once confirmed.</p>
+        )}
+      </div>
+    </section>
+  </div>
+</Base>
