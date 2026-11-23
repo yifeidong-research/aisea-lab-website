@@ -4,6 +4,9 @@
 > to the full detail in the matching monthly shard (`grep '\[id\]' memory-bank/progress/<month>.md`).
 
 ## 2026-11
+- `[nov23-7]` Nov 23 2026 — populated the Projects page with 14 sanitized entries from the
+  user's internal project-list document (client names/dollar values/tech details stripped per
+  user instruction) → memory-bank/progress/2026-11.md#nov23-7
 - `[nov23-6]` Nov 23 2026 — purchased `aisealab.org` (director-approved), wired it to GitHub
   Pages (DNS + custom domain + auto HTTPS, verified live), then removed the local GitLab
   `origin` remote so GitHub is the sole git storage → memory-bank/progress/2026-11.md#nov23-6

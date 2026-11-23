@@ -57,6 +57,30 @@ equally well; Porkbun was simply the first one researched that had no pricing-up
 `.org` was chosen over `.au`/`.com.au` specifically to avoid auDA eligibility requirements
 (ABN/Australian-presence proof) that would otherwise apply.
 
+## Projects page: sanitize client identity, dollar values, and technical detail from source
+documents before publishing (Nov 2026)
+User supplied a detailed internal project-list document (full client names, exact contract
+dollar values, technical architecture/vendor/model names) and asked for the public Projects
+page to be populated from it. Before implementing, Cline asked clarifying questions rather than
+assuming scope, since the source document was clearly written for internal/grant-reporting
+purposes, not public disclosure. **User's explicit instructions: (1) never release customer/
+client credentials (names/identities) on the page; (2) never release technical implementation
+details; (3) omit dollar values entirely, for every project regardless of whether the funder is
+a government body or a private company.** Resulting rule, applied to all current and future
+Projects entries: **government/public funders keep their real organisation name** (CSIRO, NSW
+Dept of Premier & Cabinet, Digital Health CRC, Dept of Industry Innovation & Science, UTS
+Collaboration/UTS CRB) since these are already public-record grants; **commercial/industry
+partners are described only by a generic sector phrase** (e.g. "Industry partner, property
+management sector") rather than the real company name; **no dollar amounts appear anywhere**,
+for any project; **descriptions are rewritten to describe outcomes/purpose only**, stripping any
+mention of specific cloud platforms, LLM/model names, frameworks, or vendor tools named in the
+source material. The `Project` type was extended from `{ title, description, url? }` to
+`{ title, funder, period, role, description, url? }` to support this structured, consistently
+sanitized format. See `productContext.md` for the full source-document → published-entry mapping
+(useful if the user ever adds more projects from the same internal document and needs the same
+sanitization pattern reapplied consistently).
+
+
 
 ## Content management: single TypeScript data file, no CMS (Nov 2026)
 All editable content (mission, research themes, people, publications, projects, contact email)

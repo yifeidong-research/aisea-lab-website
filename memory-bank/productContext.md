@@ -13,7 +13,7 @@ projects once UTS clears it for public hosting.
 | Research | `research.astro` | Aim/approach/partnership paragraphs, research-cycle diagram, research areas list, 3 detailed themes, recruitment contact box |
 | People | `people.astro` | Grouped by `category` ("Core Members", "Collaborators", "PhD Students", "Master of Research Students"); photo, name, title+affiliation, bio |
 | Publications | `publications.astro` | Sorted by year desc; title links to DOI |
-| Projects | `projects.astro` | Flagship programme detail + programme topics; individual projects still placeholder |
+| Projects | `projects.astro` | Flagship programme detail + programme topics; 14 individual project entries (sanitized — see note below) |
 | Contact | `contact.astro` | Affiliation, faculty, address (Level 12, Building 2, UTS), public email (mailto) |
 | 404 | `404.astro` | Custom not-found page |
 
@@ -42,9 +42,13 @@ projects once UTS clears it for public hosting.
   (to the right of) the `lab.aim` paragraph in a two-column row — not a full-width banner (see
   `systemPatterns.md` for the layout revision rationale).
 - `public/staticwebapp.config.json` — Azure SWA routing/headers config (404 rewrite, CSP,
-  `X-Robots-Tag: noindex` — remove noindex only once ready for real search indexing).
+  `X-Robots-Tag: noindex`). **Vestigial as of Nov 23 2026** — Azure SWA was never provisioned;
+  the live site is GitHub Pages (see `systemPatterns.md`'s hosting decision), which doesn't read
+  this file. Left in place in case Azure is ever added later; harmless either way.
 - `scripts/verify-deployment.mjs` — post-deploy smoke test (checks all 6 pages + 404 respond
-  with expected `<h1>` text); run automatically by `.gitlab-ci.yml`'s `deploy_azure` job.
+  with expected `<h1>` text). Originally run by `.gitlab-ci.yml`'s `deploy_azure` job; that
+  pipeline is no longer in use (GitHub Actions `.github/workflows/deploy.yml` is the active
+  deploy pipeline now and does not call this script) — kept as a manual verification tool.
 
 ## People currently on the site (`src/content/site.ts` → `people`, in display order)
 1. **Distinguished Professor Fang Chen** — Founder, AI-SEA Lab; Executive Director, Data Science
@@ -154,9 +158,42 @@ after Core Members, before PhD Students, in display order)
 (no topic filtering — includes AI/ML, agriculture, finance, medical, HCI, etc.), deduplicated
 where co-authored by 2+ of the three. Sorted by year desc on the page itself (not in the data
 file). See `systemPatterns.md` for the CrossRef sourcing method/rationale.
+## Projects (`src/content/site.ts` → `projects`, 14 entries)
+Sourced from the user's internal project-list document (`project-list-yifei-dong.md`), which
+contains full client names, exact contract dollar values, and technical implementation detail.
+**None of that made it onto the public page** — see `systemPatterns.md` for the sanitization
+rules. Government/public funders keep their real names (CSIRO, NSW Department of Premier and
+Cabinet, Digital Health CRC, Department of Industry Innovation and Science, UTS Collaboration/
+UTS Central Research Budget); commercial/industry partners are described only by sector
+(e.g. "Industry partner, property management sector"). No dollar values anywhere, for either
+funder type. `Project` type: `{ title, funder, period, role, description, url? }` — `funder` is
+either the real public-funder name or a generic sector string; `description` is a sanitized,
+non-technical summary (no tech-stack/vendor/model names).
+
+Source document → published entry mapping (source project # → page title):
+1 (AIProPIA) + 2 (Agentic AI Business Processes) + 3 (PIA Property Development, scope split into
+2 page entries: "Property Management AI Copilot", "Establishing Intelligent Business Processes
+in Property Management with Agentic AI", "Property Management AI Research Programme") — all
+funder "Industry partner, property management sector" (source: Property Investors Alliance,
+PIA). 4 → "Applying Generative AI in Pharmaceutical Evaluation in Australia" (funder: UTS
+Collaboration, kept as-is — not a named commercial client). 5 → "Integrating Multimodal Learning
+Analytics..." (funder: CSIRO, kept as-is). 6 → "AI-Powered Detection of Dodgy Digital Content for
+Children (SLLM)" (funder: UTS Central Research Budget, kept as-is). 7 → "Proof of Concept:
+Behavioural Insights from On-Device Photos" (funder: "Industry partner, digital health sector" —
+source: GAO FU Australia / Cordouan Health). 8 → "Bringing Generative AI to the NDIS Complaints
+Process" (funder: "Industry partner, disability services sector" — source: nTrustus; kept the
+2025 Australian Regtech Award mention since that's public recognition, not a contract detail).
+9 + 10 → "NSW Trend Atlas — Machine Learning and Automation Enhancements" / "— Platform
+Architecture Refactoring" (funder: NSW Department of Premier and Cabinet, kept as-is — a
+government department, not a private company). 11 → "AI-Assisted Analysis for Global Asset
+Management Research" (funder: "Industry partner, financial services consulting sector" —
+source: NMG Financial Services Consulting). 12 → "Sensor and Data Innovation for Smart Triaging
+and Wellbeing in Aged Care" (funder: Department of Industry, Innovation and Science, kept as-is).
+13 → "Patient Journey Modelling..." (funder: Digital Health CRC, kept as-is). 14 → "Understanding
+Student Emotions When Completing Assessment" (funder: UTS Collaboration, kept as-is).
+
+
 
 ## Not yet done
-- Individual Projects entries (placeholder notice still shown).
 - UTS logo (needs separate authorisation).
-- Domain name (not chosen/ordered).
-- Azure deployment (not provisioned; pending UTS clearance).
+- Future personal website on the user's GitHub account (not started).

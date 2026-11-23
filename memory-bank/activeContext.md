@@ -11,6 +11,9 @@
 
 ## Nov 23 2026 — Index
 
+- `[nov23-7]` Populated the Projects page with 14 sanitized entries from the user's internal
+  project-list document (client identities/dollar values/tech details stripped) — done →
+  `progress/2026-11.md#nov23-7`
 - `[nov23-6]` Purchased `aisealab.org`, wired to GitHub Pages with auto HTTPS (verified live),
   removed local GitLab remote so GitHub is sole git storage — done → `progress/2026-11.md#nov23-6`
 - `[nov23-5]` Migrated to a new public GitHub repo (`yifeidong-research/aisea-lab-website`) with
