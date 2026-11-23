@@ -213,6 +213,20 @@ appearance); Community and translational research support. `CollaborationWay` ty
 used on `research.astro`, plus a numbered `.process-list` for the 3-step "how it works"
 sequence (email → scoping conversation → written agreement before work starts).
 
+**Follow-up (same day): expanded to 6 categories.** User asked Cline (in plan mode) whether it
+could think of other collaboration methods beyond the original 5. Cline proposed 5 additional
+candidates and recommended adding only the strongest two: a standalone **"Evaluation and
+assurance audits"** category (a shorter, lower-commitment variant of production-readiness
+support — independent evaluation/stress-testing/assurance case for a system already in or near
+production, positioned second, right after the main engineering-support category since it's a
+lighter entry point into the same relationship) and a closing **workshop/training note**
+(`collaborationNote`) mentioning short paid workshops as an even lighter starting point. Three
+other candidates Cline raised (benchmark/dataset co-development, advisory-panel membership,
+standalone capstone/honours sponsorship) were deliberately left out of the page itself as too
+niche/occasional for a frequent-inbound-demand page, or already adequately covered by existing
+categories — see `systemPatterns.md` for the full reasoning on what was added vs. deliberately
+left out.
+
 
 Student Emotions When Completing Assessment" (funder: UTS Collaboration, kept as-is).
 

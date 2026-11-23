@@ -11,6 +11,8 @@
 
 ## Nov 23 2026 — Index
 
+- `[nov23-10]` Expanded Collaborate page to 6 categories (added "Evaluation and assurance
+  audits" + a workshop note) after a brainstorm prompt — done → `progress/2026-11.md#nov23-10`
 - `[nov23-9]` Added a new Collaborate page with 5 risk-screened collaboration categories, after
   reviewing an external lab's collaboration page as a reference point — done →
   `progress/2026-11.md#nov23-9`

@@ -4,6 +4,9 @@
 > to the full detail in the matching monthly shard (`grep '\[id\]' memory-bank/progress/<month>.md`).
 
 ## 2026-11
+- `[nov23-10]` Nov 23 2026 — expanded Collaborate page to 6 categories: added "Evaluation and
+  assurance audits" + a workshop/training note, after a brainstorm prompt → filtered 5 candidate
+  ideas down to the 2 strongest → memory-bank/progress/2026-11.md#nov23-10
 - `[nov23-9]` Nov 23 2026 — added a new Collaborate page (5 risk-screened collaboration
   categories + 3-step process), synthesized from the user's brainstorm after reviewing an
   external lab's collaboration page as a reference point →

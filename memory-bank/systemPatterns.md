@@ -133,6 +133,38 @@ timeline, data handling, IP, and authorship where relevant) before any work star
 part of SYNTERA's own page structure judged worth adopting wholesale, since it's what keeps
 every category low-risk in practice regardless of which one someone picks.
 
+**Follow-up (same day): expanded to 6 categories after a brainstorm prompt.** User asked Cline's
+own opinion on whether there were other collaboration methods worth adding, beyond the 5 just
+published. Cline proposed 5 candidates and explicitly recommended against adding all of them —
+filtering by genuine differentiation and expected demand frequency rather than simply appending
+every idea:
+- **Added: "Evaluation and assurance audits"** — a standalone category for a shorter, lower-
+  commitment engagement (independent evaluation/stress-test/assurance case for a system already
+  in or near production) distinct from the full "Production-readiness engineering support"
+  category, which implies a longer build/fix engagement. Rationale: many organisations want "is
+  this safe to ship" far more often than "rebuild this for us" — this was judged a genuine gap,
+  not a reword of an existing category, and a natural lower-friction entry point into the same
+  client relationship. Positioned immediately after the main engineering-support category.
+- **Added: a closing workshop/training note** (`collaborationNote`, not a 7th full category) —
+  mentioning short paid workshops/training sessions as an even lighter starting point than an
+  audit. Kept as a single sentence rather than a full category card, to avoid diluting the page
+  with too many options at equal visual weight.
+- **Deliberately NOT added as standalone categories**: benchmark/dataset co-development (a
+  legitimate and interesting idea, but more occasional/opportunistic than frequent organic
+  inbound demand — better suited to a future case-study/news item than a standing page
+  category); technical advisory/expert-panel membership (also legitimate — Fang Chen's own bio
+  already demonstrates this track record — but similarly occasional rather than a repeatable
+  "come work with us this way" offer); standalone capstone/honours-project sponsorship (judged
+  to already be adequately covered by the existing "Industry-sponsored PhD candidature"
+  category's framing plus the Research page's existing general `recruitment` section, rather
+  than needing its own 7th/8th category and risking an overly long page that dilutes the
+  stronger categories).
+
+Final 6-category order (`collaborationWays` in `site.ts`): (1) Production-readiness engineering
+support, (2) Evaluation and assurance audits, (3) Industry-sponsored PhD candidature, (4) Joint
+grant applications, (5) Visiting researchers and research collaborators, (6) Community and
+translational research support.
+
 ## Content management: single TypeScript data file, no CMS (Nov 2026)
 All editable content (mission, research themes, people, publications, projects, contact email)
 lives in `src/content/site.ts`, imported by the `.astro` page templates. Deliberately chosen over
