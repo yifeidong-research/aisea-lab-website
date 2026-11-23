@@ -79,7 +79,7 @@ export type Publication = { title: string; authors: string; venue: string; year:
 // CRCs, university schemes); for commercial/industry partners, use a generic sector description
 // instead (e.g. "Industry partner, property management sector") to avoid publishing client
 // identities without consent. Never include dollar values or technical implementation details.
-export type Project = { title: string; funder: string; period: string; role: string; description: string; url?: string };
+export type Project = { title: string; funder: string; period: string; description: string; url?: string };
 
 // Add one entry per person. `photo` is optional and should point to a file
 // placed in `public/people/` (for example `/people/jane-smith.jpg`). `bio`
@@ -599,98 +599,84 @@ export const projects: Project[] = [
     title: 'Property Management AI Copilot',
     funder: 'Industry partner, property management sector',
     period: 'January 2026 – June 2028',
-    role: 'Project Leader',
     description: 'An enterprise-grade AI copilot that unifies a property management organisation\u2019s existing task-specific AI agents and centralised data assets into a single intelligent operational layer, supporting property managers through a unified conversational interface.',
   },
   {
     title: 'Establishing Intelligent Business Processes in Property Management with Agentic AI',
     funder: 'Industry partner, property management sector',
     period: '2025–2026',
-    role: 'Project Leader',
     description: 'An agentic AI system that ingests multi-channel property management communications (emails, phone transcripts, chat logs), captures business rules, refines standard operating procedures through feedback loops, and plans and executes operational tasks such as maintenance scheduling and escalations.',
   },
   {
     title: 'Property Management AI Research Programme',
     funder: 'Industry partner, property management sector',
     period: '2024–2025',
-    role: 'Project Leader',
     description: 'Two parallel research scopes supporting property professionals: AI-assisted exam preparation tools for real estate licensing, and a comprehensive intent classification system for categorising communications between landlords, tenants and property managers.',
   },
   {
     title: 'Applying Generative AI in Pharmaceutical Evaluation in Australia',
     funder: 'UTS Collaboration',
     period: '2025',
-    role: 'Project Leader',
     description: 'Australia\u2019s first generative AI assistant designed to support evaluators of pharmaceutical subsidisation applications, trained on a large archive of public evaluation documents to assist with report summarisation and precedent identification amid rapidly growing application volumes.',
   },
   {
     title: 'Integrating Multimodal Learning Analytics with an LLM-Based Agent to Address Educational Disadvantage',
     funder: 'CSIRO',
     period: '2024–2028',
-    role: 'Project Leader; Primary PhD Supervisor',
     description: 'A multimodal learning analytics system that constructs student engagement profiles from behavioural and qualitative data, feeding an LLM-based educational support agent that delivers personalised interventions to students identified as educationally disadvantaged.',
   },
   {
     title: 'AI-Powered Detection of Dodgy Digital Content for Children (SLLM)',
     funder: 'UTS Central Research Budget',
     period: '2024',
-    role: 'Project Leader',
     description: 'An AI system that detects harmful online content and educates users through gamified learning experiences and personalised feedback, developed in partnership with a consumer scam-awareness platform and collaborating institutions.',
   },
   {
     title: 'Proof of Concept: Behavioural Insights from On-Device Photos',
     funder: 'Industry partner, digital health sector',
     period: '2024',
-    role: 'Chief Investigator',
     description: 'A proof-of-concept mobile application analysing on-device photo content to automatically categorise behavioural activity patterns and generate personalised wellbeing insight reports.',
   },
   {
     title: 'Bringing Generative AI to the NDIS Complaints Process',
     funder: 'Industry partner, disability services sector',
     period: '2023–2025',
-    role: 'Project Leader',
     description: 'Conversational AI tools supporting both service providers and participants through the NDIS complaints resolution process, designed around the communication needs of people with disability and deployed into live national complaints infrastructure. The industry partner received a 2025 Australian Regtech Award for the resulting platform.',
   },
   {
     title: 'NSW Trend Atlas — Machine Learning and Automation Enhancements',
     funder: 'NSW Department of Premier and Cabinet',
     period: '2023',
-    role: 'Project Leader',
     description: 'Natural language processing tools automating trend mapping, emerging-trend identification and content categorisation for a government strategic intelligence platform used by over 1,300 users, delivered under a privacy-preserving architecture meeting government cybersecurity requirements.',
   },
   {
     title: 'NSW Trend Atlas — Platform Architecture Refactoring',
     funder: 'NSW Department of Premier and Cabinet',
     period: '2025',
-    role: 'Project Leader',
     description: 'A modular re-architecture of an existing government analytics automation toolset to improve scalability, maintainability and runtime configurability.',
   },
   {
     title: 'AI-Assisted Analysis for Global Asset Management Research',
     funder: 'Industry partner, financial services consulting sector',
     period: 'August – September 2025',
-    role: 'Implementation Oversight',
     description: 'A generative AI system enabling natural-language business queries over a long-running institutional investor survey dataset, grounded in statistical analysis of asset manager performance metrics.',
   },
   {
     title: 'Sensor and Data Innovation for Smart Triaging and Wellbeing in Aged Care',
     funder: 'Department of Industry, Innovation and Science',
     period: '2022–2024',
-    role: 'Chief Investigator',
     description: 'An integrated smart triaging platform combining low-cost wearable sensors with AI-powered decision support for real-time remote monitoring and proactive care management for elderly Australians.',
   },
   {
     title: 'Patient Journey Modelling — From Data to Insights into Patient Pathways',
     funder: 'Digital Health CRC',
     period: '2020–2024',
-    role: 'Chief Investigator',
     description: 'A methodology and visual analytics system for modelling patient pathways through the NSW health system using a large-scale linked primary care dataset, supporting value-based, person-centred care design.',
   },
   {
     title: 'Understanding Student Emotions When Completing Assessment',
     funder: 'UTS Collaboration',
     period: '2023–2024',
-    role: 'Co-researcher',
     description: 'An interdisciplinary study combining learning analytics (facial expression, interaction pattern data) with qualitative interviews to examine student emotional engagement during online assessment, identifying distinct engagement patterns among students.',
   },
 ];
