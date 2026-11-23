@@ -166,9 +166,11 @@ rules. Government/public funders keep their real names (CSIRO, NSW Department of
 Cabinet, Digital Health CRC, Department of Industry Innovation and Science, UTS Collaboration/
 UTS Central Research Budget); commercial/industry partners are described only by sector
 (e.g. "Industry partner, property management sector"). No dollar values anywhere, for either
-funder type. `Project` type: `{ title, funder, period, role, description, url? }` — `funder` is
-either the real public-funder name or a generic sector string; `description` is a sanitized,
-non-technical summary (no tech-stack/vendor/model names).
+funder type. **No individual role/leadership attribution either** (removed in `[nov23-8]` — the
+page represents the lab's project examples, not individual CV credits). `Project` type:
+`{ title, funder, period, description, url? }` — `funder` is either the real public-funder name
+or a generic sector string; `description` is a sanitized, non-technical summary (no tech-stack/
+vendor/model names).
 
 Source document → published entry mapping (source project # → page title):
 1 (AIProPIA) + 2 (Agentic AI Business Processes) + 3 (PIA Property Development, scope split into

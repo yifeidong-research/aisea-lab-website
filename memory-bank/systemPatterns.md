@@ -80,6 +80,15 @@ sanitized format. See `productContext.md` for the full source-document → publi
 (useful if the user ever adds more projects from the same internal document and needs the same
 sanitization pattern reapplied consistently).
 
+**Follow-up (same day): removed individual role/leadership attribution entirely.** After the
+initial import, the user asked to drop "Project Leader"/"Chief Investigator"/etc. from each
+entry, framing the point explicitly: "these projects should be a lab's project examples" — i.e.
+the Projects page represents the **lab's** portfolio/track record, not a personal CV credit
+list for whoever happened to lead each project. `Project` was reduced from `{ title, funder,
+period, role, description, url? }` back to `{ title, funder, period, description, url? }`,
+removing the field from the type and all 14 entries (and from `projects.astro`'s render). This
+is now the durable convention for the Projects page specifically — unlike the People page,
+where individual role/title *is* the point.
 
 
 ## Content management: single TypeScript data file, no CMS (Nov 2026)

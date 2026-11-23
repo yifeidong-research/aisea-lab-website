@@ -11,6 +11,9 @@
 
 ## Nov 23 2026 — Index
 
+- `[nov23-8]` Removed role/leadership attribution from all 14 Projects entries — page now
+  frames as the lab's project examples, not individual CV credits — done →
+  `progress/2026-11.md#nov23-8`
 - `[nov23-7]` Populated the Projects page with 14 sanitized entries from the user's internal
   project-list document (client identities/dollar values/tech details stripped) — done →
   `progress/2026-11.md#nov23-7`

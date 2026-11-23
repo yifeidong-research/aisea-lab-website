@@ -4,6 +4,9 @@
 > to the full detail in the matching monthly shard (`grep '\[id\]' memory-bank/progress/<month>.md`).
 
 ## 2026-11
+- `[nov23-8]` Nov 23 2026 — removed individual role/leadership attribution ("Project Leader" /
+  "Chief Investigator" etc.) from all 14 Projects entries, reframing the page as the lab's
+  project portfolio rather than individual CV credits → memory-bank/progress/2026-11.md#nov23-8
 - `[nov23-7]` Nov 23 2026 — populated the Projects page with 14 sanitized entries from the
   user's internal project-list document (client names/dollar values/tech details stripped per
   user instruction) → memory-bank/progress/2026-11.md#nov23-7
