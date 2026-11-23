@@ -4,6 +4,10 @@
 > to the full detail in the matching monthly shard (`grep '\[id\]' memory-bank/progress/<month>.md`).
 
 ## 2026-11
+- `[nov23-9]` Nov 23 2026 — added a new Collaborate page (5 risk-screened collaboration
+  categories + 3-step process), synthesized from the user's brainstorm after reviewing an
+  external lab's collaboration page as a reference point →
+  memory-bank/progress/2026-11.md#nov23-9
 - `[nov23-8]` Nov 23 2026 — removed individual role/leadership attribution ("Project Leader" /
   "Chief Investigator" etc.) from all 14 Projects entries, reframing the page as the lab's
   project portfolio rather than individual CV credits → memory-bank/progress/2026-11.md#nov23-8

@@ -11,6 +11,9 @@
 
 ## Nov 23 2026 — Index
 
+- `[nov23-9]` Added a new Collaborate page with 5 risk-screened collaboration categories, after
+  reviewing an external lab's collaboration page as a reference point — done →
+  `progress/2026-11.md#nov23-9`
 - `[nov23-8]` Removed role/leadership attribution from all 14 Projects entries — page now
   frames as the lab's project examples, not individual CV credits — done →
   `progress/2026-11.md#nov23-8`

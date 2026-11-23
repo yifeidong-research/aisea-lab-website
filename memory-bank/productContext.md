@@ -14,6 +14,7 @@ projects once UTS clears it for public hosting.
 | People | `people.astro` | Grouped by `category` ("Core Members", "Collaborators", "PhD Students", "Master of Research Students"); photo, name, title+affiliation, bio |
 | Publications | `publications.astro` | Sorted by year desc; title links to DOI |
 | Projects | `projects.astro` | Flagship programme detail + programme topics; 14 individual project entries (sanitized — see note below) |
+| Collaborate | `collaborate.astro` | 5 ways to work with the lab (see note below), plus a 3-step "how it works" process |
 | Contact | `contact.astro` | Affiliation, faculty, address (Level 12, Building 2, UTS), public email (mailto) |
 | 404 | `404.astro` | Custom not-found page |
 
@@ -192,6 +193,27 @@ Management Research" (funder: "Industry partner, financial services consulting s
 source: NMG Financial Services Consulting). 12 → "Sensor and Data Innovation for Smart Triaging
 and Wellbeing in Aged Care" (funder: Department of Industry, Innovation and Science, kept as-is).
 13 → "Patient Journey Modelling..." (funder: Digital Health CRC, kept as-is). 14 → "Understanding
+## Collaborate (`src/content/site.ts` → `collaborationIntro`/`collaborationWays`/
+`collaborationProcess`, page at `/collaborate/`, added to main nav between Projects and Contact)
+Synthesized from the user's own brainstormed list of collaboration patterns (industry co-grant
+applications; junior researchers/students seeking publication experience; grant/journal-funded
+RA-style roles; academics seeking high-impact collaborators; community support requests; GenAI
+production-readiness support; industry-sponsored PhD scholarships), discussed and refined in a
+plan-mode conversation that started from reviewing an external lab's ("SYNTERA Research Group")
+own collaboration page as a reference point — **not** to partner with that group, purely as a
+model to evaluate. Reduced from the user's broader brainstorm to **5 public-facing categories**
+(see `systemPatterns.md` for the full risk-screening rationale and what was deliberately
+reframed/dropped): Production-readiness engineering support (the lead item — maps directly onto
+the lab's own mission/flagship programme); Industry-sponsored PhD candidature; Joint grant
+applications; Visiting researchers and research collaborators (merged/reframed from the user's
+original "junior student publication-experience" and "academic seeking collaborators" ideas,
+with explicit standard-authorship-criteria language to avoid any pay/volunteer-for-authorship
+appearance); Community and translational research support. `CollaborationWay` type:
+`{ title, audience, detail }`. Page follows the same `.content-row` two-column pattern already
+used on `research.astro`, plus a numbered `.process-list` for the 3-step "how it works"
+sequence (email → scoping conversation → written agreement before work starts).
+
+
 Student Emotions When Completing Assessment" (funder: UTS Collaboration, kept as-is).
 
 

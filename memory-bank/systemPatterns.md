@@ -90,6 +90,48 @@ removing the field from the type and all 14 entries (and from `projects.astro`'s
 is now the durable convention for the Projects page specifically — unlike the People page,
 where individual role/title *is* the point.
 
+## Collaborate page: a risk-screened, 5-category collaboration model (Nov 2026)
+User asked Cline's opinion on an external lab's ("SYNTERA Research Group") public collaboration
+page as a reference, then brainstormed a list of 7 collaboration patterns they'd observed or
+imagined for AI-SEA Lab, and asked Cline to "polish" the list — explicitly inviting Cline to
+modify or **discard** risky ideas rather than transcribe them as-is. Two of the user's original
+framings were deliberately changed, not just copy-edited, because of integrity/reputational
+risk if published literally:
+- **"Junior student/research work for more publications, as an add-on for PhD applications,
+  because they can't find opportunities"** and **"academic staff, especially from
+  under-resourced countries, seeking high-end publication/project collaborators"** were merged
+  into a single **"Visiting researchers and research collaborators"** category, rewritten so
+  that co-authorship is offered only as the outcome of a **real, assessable contribution**
+  (standard academic authorship criteria — substantial contribution to design, analysis or
+  writing), explicitly **not** offered in exchange for a credential or application boost.
+  Rationale: the original framing, published literally on a public lab page, would read as
+  advertising a pay/volunteer-for-authorship arrangement — adjacent to paper-mill practice even
+  if that was never the intent — which is a serious risk to the lab's and UTS's research
+  integrity reputation. The underlying need (genuine mentorship/collaboration opportunities for
+  people without institutional access to data/compute/networks) is legitimate and was kept; only
+  the authorship-for-credential framing was removed. Naming a specific region
+  ("under-resourced/developing countries") was also dropped as unnecessary and reductive — the
+  real distinguishing factor is resource access, not geography.
+- The user's **"companies with immature/unreliable GenAI systems seeking engineering support"**
+  idea (added as a follow-up, not in the original 7) was promoted to the **lead** category
+  ("Production-readiness engineering support") since it maps almost exactly onto the lab's own
+  mission statement and flagship programme ("From GenAI Prototypes to Production-Ready
+  Systems") — the single strongest mission-fit of everything discussed.
+- **"Industry PhD scholarship"** (company sponsors a candidature, either an existing staff
+  member or a lab-selected candidate, to solve a real problem) was kept largely as proposed —
+  low integrity risk since formal PhD candidature already has strong existing governance
+  (milestones, independent examination, ethics approval) that the other categories lack.
+- **Joint grant applications** and **Community/translational research support** were kept
+  essentially as proposed — both are well-established, low-risk academic engagement patterns.
+
+Final published taxonomy (`collaborationWays` in `site.ts`, in this display order): (1)
+Production-readiness engineering support, (2) Industry-sponsored PhD candidature, (3) Joint
+grant applications, (4) Visiting researchers and research collaborators, (5) Community and
+translational research support. Every category links to the same 3-step process
+(`collaborationProcess`): email → scoping conversation → written agreement (scope, deliverables,
+timeline, data handling, IP, and authorship where relevant) before any work starts — the one
+part of SYNTERA's own page structure judged worth adopting wholesale, since it's what keeps
+every category low-risk in practice regardless of which one someone picks.
 
 ## Content management: single TypeScript data file, no CMS (Nov 2026)
 All editable content (mission, research themes, people, publications, projects, contact email)
