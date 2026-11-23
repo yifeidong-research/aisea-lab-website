@@ -1,5 +1,39 @@
 # AI-SEA Lab Website — System Patterns
 
+## Hosting/VCS: dual-remote (UTS GitLab + personal GitHub), GitHub Pages as the active deploy
+target (Nov 2026)
+After researching how two comparable lab sites are hosted (`hcai-lab.com` → Netlify,
+`fmlab.org` → GitHub Pages, both found via `whois`/`dig`/HTTP-header inspection — a reusable
+technique for this kind of due-diligence), and with the Azure/UTS hosting-clearance path still
+pending indefinitely, the user chose to migrate deployment to their own personal GitHub account
+rather than wait. **Decision: keep both remotes, don't delete GitLab.** `origin` = UTS GitLab
+(`code.research.uts.edu.au`, private, unchanged); `github` = new public repo
+`yifeidong-research/aisea-lab-website`. GitHub is now the **active, live** deploy target
+(GitHub Actions → GitHub Pages, auto on push to `main`); GitLab is a **fallback/backup**, not
+currently receiving pushes — the two `main` branches are allowed to diverge/fall out of sync
+until the user decides otherwise (there is no dual-push automation). GitHub Pages was chosen
+over Netlify (the other proven option) simply because it's zero-additional-signup — already
+extending the user's own existing GitHub account — and because `fmlab.org` is a direct precedent
+for the exact Astro-style static-build-then-deploy flow. Credentials for GitHub operations
+(PATs) must **never** be embedded in git remote URLs persistently — see the token-handling
+decision below.
+
+## GitHub token handling: never persist in remote URLs, remove immediately after use (Nov 2026)
+When a user-supplied fine-grained PAT is needed for a one-off push (e.g. the initial GitHub
+migration), the pattern is: `git remote add github https://<token>@github.com/...` → `git push`
+→ **immediately** `git remote remove github` → re-add a clean credential-free
+`https://github.com/<owner>/<repo>.git` remote for future reference. This avoids the token
+sitting in `.git/config` (a plaintext file) any longer than the single push requires. Separately
+flagged to the user: GitHub fine-grained PATs need an explicit **"Workflows: Read and write"**
+repository permission (distinct from Contents/Administration/Pages) to push anything under
+`.github/workflows/**` — a push without it is rejected with `refusing to allow a Personal Access
+Token to create or update workflow ... without workflow scope`; this is editable on the existing
+token in place (no need to regenerate a new token string). If a user pastes their actual account
+password (not a token) into chat, treat that as a security incident requiring an explicit
+recommendation to rotate the password immediately, separate from whatever the original request
+was — a password cannot be used for git/API auth anyway (GitHub removed that in 2021), so there
+is no technical reason to ever ask for one.
+
 ## Content management: single TypeScript data file, no CMS (Nov 2026)
 All editable content (mission, research themes, people, publications, projects, contact email)
 lives in `src/content/site.ts`, imported by the `.astro` page templates. Deliberately chosen over

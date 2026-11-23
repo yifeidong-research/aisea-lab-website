@@ -4,6 +4,10 @@
 > to the full detail in the matching monthly shard (`grep '\[id\]' memory-bank/progress/<month>.md`).
 
 ## 2026-11
+- `[nov23-5]` Nov 23 2026 — migrated to a new public GitHub repo
+  (`yifeidong-research/aisea-lab-website`) with GitHub Actions → GitHub Pages auto-deploy;
+  GitLab kept as fallback, not deleted — open item: user should rotate/revoke the GitHub
+  password + PAT shared in chat → memory-bank/progress/2026-11.md#nov23-5
 - `[nov23-4]` Nov 23 2026 — People page converted to a collapsible accordion (native
   `<details>`/`<summary>`): compact one-line summary per person, click/tap to expand full bio —
   addresses "too much scrolling" with many people now added →
