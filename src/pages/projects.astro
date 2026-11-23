@@ -16,8 +16,12 @@ import { lab, programmeTopics, projects } from '../content/site';
     <section class="project-list">
       <h2>Individual projects</h2>
       {projects.length ? (
-        <ul class="record-list">{projects.map(({ title, description, url }) =>
-          <li><h3>{url ? <a href={url}>{title}</a> : title}</h3><p>{description}</p></li>
+        <ul class="record-list">{projects.map(({ title, funder, period, role, description, url }) =>
+          <li>
+            <h3>{url ? <a href={url}>{title}</a> : title}</h3>
+            <p class="project-meta">{funder} · {period} · {role}</p>
+            <p>{description}</p>
+          </li>
         )}</ul>
       ) : (
         <p class="placeholder"><strong>Placeholder</strong> · Individual project profiles will appear here once confirmed.</p>

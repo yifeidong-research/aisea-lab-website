@@ -77,6 +77,8 @@ nav a:hover, nav a[aria-current] { border-bottom-color: var(--ink); }
 .people-list h3 { font-size: 1.4rem; font-weight: 460; font-family: var(--display); }
 .project-list { margin-top: 2.2rem; }
 .project-list .placeholder { margin-top: 1rem; }
+.project-meta { margin-top: .35rem; font-size: .85rem; font-weight: 600; color: var(--ink); }
+.project-meta + p { margin-top: .5rem; }
 .people-list li { padding-block: 0; border-top: 1px solid var(--line-soft); }
 .people-group:first-of-type .people-list li:first-child { border-top: none; }
 .person-details { padding-block: 1.3rem; }
