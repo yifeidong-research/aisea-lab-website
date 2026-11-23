@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageIntro from '../components/PageIntro.astro';
-import { collaborationIntro, collaborationProcess, collaborationWays, recruitment } from '../content/site';
+import { collaborationIntro, collaborationNote, collaborationProcess, collaborationWays, recruitment } from '../content/site';
 const description = 'Ways to work with AI-SEA Lab: industry, government, academia and community collaboration.';
 ---
 <Base title="Collaborate" description={description}>
@@ -20,6 +20,7 @@ const description = 'Ways to work with AI-SEA Lab: industry, government, academi
     <ol class="process-list">
       {collaborationProcess.map((step) => <li>{step}</li>)}
     </ol>
+    <p class="lab-about">{collaborationNote}</p>
     <section class="recruitment">
       <p>Have a problem, a grant or a partnership in mind? Email <a href={`mailto:${recruitment.contactEmail}`}>{recruitment.contactName} ({recruitment.contactEmail})</a>.</p>
     </section>

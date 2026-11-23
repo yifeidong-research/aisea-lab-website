@@ -74,6 +74,11 @@ export const collaborationWays: CollaborationWay[] = [
     detail: 'Many organisations have already adopted generative AI, but find the resulting system unreliable, hard to evaluate, or risky to scale. We apply systems engineering, evaluation methodology and assurance practice to take an existing GenAI prototype or pilot to dependable, accountable production operation, as a commissioned project with scope, deliverables and IP terms agreed in writing.',
   },
   {
+    title: 'Evaluation and assurance audits',
+    audience: 'For organisations wanting an independent check before a bigger commitment',
+    detail: 'A shorter, defined engagement for a system already in production or close to it: an independent evaluation, stress test, or assurance case covering reliability, failure modes and oversight. Useful ahead of a board decision, a compliance requirement or a procurement process, and a lower-commitment way to start working with us before a larger engineering engagement.',
+  },
+  {
     title: 'Industry-sponsored PhD candidature',
     audience: 'For organisations seeking a long-term research partnership tied to a real problem',
     detail: 'An organisation funds a scholarship for a PhD candidate to research one of its real operational problems under AI-SEA Lab supervision — either sponsoring an existing staff member\u2019s candidature, or having the lab help select a suitable candidate. The candidate earns a genuine, independently examined doctorate; the sponsoring organisation gains a trained specialist and a solved problem.',
@@ -94,6 +99,8 @@ export const collaborationWays: CollaborationWay[] = [
     detail: 'Research and project support for community, government and not-for-profit organisations applying AI responsibly in real operating settings, consistent with the lab\u2019s focus on dependable, accountable, real-world deployment.',
   },
 ];
+
+export const collaborationNote = 'Looking for something lighter first? We also run short workshops and training sessions on evaluating and operating GenAI systems responsibly \u2014 a useful starting point before committing to a larger engagement.';
 
 export const collaborationProcess = [
   'Email us with your problem, your organisation, and your timeline.',
