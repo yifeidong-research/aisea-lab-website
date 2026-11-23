@@ -2,14 +2,57 @@
 import Base from '../layouts/Base.astro';
 import PageIntro from '../components/PageIntro.astro';
 import { people } from '../content/site';
+
+const categoryOrder = ['Core Members', 'Collaborators', 'PhD Students', 'Master of Research Students'] as const;
+// 'PhD Students' and 'Master of Research Students' are ordered by entryYear (earliest first);
+// people without an entryYear sort after those with one. Array.prototype.sort is stable, so
+// ties (same entryYear, or both missing) keep their original relative order in `people`.
+const sortableByEntryYear = new Set(['PhD Students', 'Master of Research Students']);
+const currentYear = new Date().getFullYear();
+const groups = categoryOrder
+  .map((category) => {
+    const members = people.filter((p) => p.category === category);
+    if (sortableByEntryYear.has(category)) {
+      members.sort((a, b) => (a.entryYear ?? Infinity) - (b.entryYear ?? Infinity));
+    }
+    return { category, members };
+  })
+  .filter((group) => group.members.length);
 ---
 <Base title="People" description="People at the AI-SEA Lab.">
   <div class="wrap section interior">
     <PageIntro title="People" description="Meet the researchers and students contributing to the AI-SEA Lab." />
     {people.length ? (
-      <ul class="record-list">{people.map(({ name, role, profileUrl }) =>
-        <li><h2>{profileUrl ? <a href={profileUrl}>{name}</a> : name}</h2><p>{role}</p></li>
-      )}</ul>
+      groups.map(({ category, members }) => (
+        <section class="people-group">
+          <h2 class="people-group-heading">{category}</h2>
+          <ul class="record-list people-list">{members.map(({ name, role, bio, photo, profileUrl, entryYear, category: memberCategory }) => (
+            <li class="person-card">
+              <details class="person-details">
+                <summary class="person-summary">
+                  {photo ? (
+                    <img class="person-photo" src={photo} alt={`Portrait of ${name}`} width="96" height="96" loading="lazy" />
+                  ) : (
+                    <span class="person-photo person-photo-placeholder" aria-hidden="true">{name.charAt(0)}</span>
+                  )}
+                  <div class="person-summary-text">
+                    <h3>{name}</h3>
+                    <p>{role}{sortableByEntryYear.has(memberCategory) && entryYear ? ` · ${entryYear > currentYear ? 'Starting' : 'Started'} ${entryYear}` : ''}</p>
+                  </div>
+                  <span class="person-toggle" aria-hidden="true"></span>
+                </summary>
+                <div class="person-detail-body">
+                  {profileUrl && <p class="person-profile-link"><a href={profileUrl}>UTS profile ↗</a></p>}
+                  {bio && (Array.isArray(bio) ? bio : [bio]).map((paragraph) => (
+                    <p class="person-bio">{paragraph}</p>
+                  ))}
+                  {!bio && <p class="person-bio placeholder-note">Bio coming soon.</p>}
+                </div>
+              </details>
+            </li>
+          ))}</ul>
+        </section>
+      ))
     ) : (
       <p class="placeholder"><strong>Placeholder</strong> · Lab profiles will be added once approved for publication.</p>
     )}

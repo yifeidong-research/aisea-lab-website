@@ -9,7 +9,7 @@ import { contactEmail, lab } from '../content/site';
     <section class="content-row contact-row">
       <h2>{lab.affiliation}</h2>
       <div>
-        <p>University of Technology Sydney<br />Sydney, Australia</p>
+        <p>{lab.faculty}<br />{lab.address}<br />Sydney, Australia</p>
         {contactEmail ? (
           <a class="text-link" href={`mailto:${contactEmail}`}>{contactEmail}</a>
         ) : (

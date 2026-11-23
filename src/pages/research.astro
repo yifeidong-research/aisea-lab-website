@@ -1,12 +1,24 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageIntro from '../components/PageIntro.astro';
-import { researchThemes } from '../content/site';
+import { lab, recruitment, researchAreas, researchThemes } from '../content/site';
 const description = 'We study how intelligent systems are designed, evaluated and operated across domains and throughout their lifecycle.';
 ---
 <Base title="Research" description={description}>
   <div class="wrap section interior">
     <PageIntro title="Research" description={description} />
+    <section class="content-row research-row">
+      <p class="lab-about">{lab.aim}</p>
+      <figure class="research-figure">
+        <img src="/images/research-cycle.png" alt="Diagram showing a continuous cycle linking the lab's three research themes: Systems Engineering, Reliability &amp; Evaluation, and Assurance &amp; Governance." width="1200" height="900" loading="lazy" />
+        <figcaption>The three research themes operate as a continuous cycle, not a one-off checklist.</figcaption>
+      </figure>
+    </section>
+    <h2 class="areas-heading">Research areas</h2>
+    <ul class="areas-list">
+      {researchAreas.map((area) => <li>{area}</li>)}
+    </ul>
+    <p class="lab-about">{lab.approach}</p>
     <div class="rows">
       {researchThemes.map(({ title, detail }, index) => (
         <section id={`theme-${index + 1}`} class="content-row">
@@ -15,5 +27,9 @@ const description = 'We study how intelligent systems are designed, evaluated an
       ))}
     </div>
     <a class="text-link" href="/projects/#flagship">See the flagship programme <span aria-hidden="true">↗</span></a>
+    <p class="lab-about">{lab.partnership}</p>
+    <section class="recruitment">
+      <p>{recruitment.intro} <a href={`mailto:${recruitment.contactEmail}`}>{recruitment.contactName} ({recruitment.contactEmail})</a>.</p>
+    </section>
   </div>
 </Base>
