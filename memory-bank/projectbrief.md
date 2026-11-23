@@ -12,31 +12,24 @@ evaluation, assurance and governance. Flagship programme: "From GenAI Prototypes
 Production-Ready Systems."
 
 **Local path:** `/Users/144164/Workspace/aisea-lab-website`
-**Repo (private UTS GitLab, `origin`):** `https://code.research.uts.edu.au/144164/aisea-lab-website.git`
-**Repo (public GitHub, `github`, added Nov 23 2026):**
-`https://github.com/yifeidong-research/aisea-lab-website.git` — owner account `yifeidong-research`
-(user's personal GitHub). GitLab (`origin`) was NOT deleted — user chose to keep it as a
-fallback, decide on removal later. GitHub is now the active hosting target; GitLab has not
-received any pushes since this migration (see commit note below) and will fall further behind
-unless the user asks for ongoing dual-push, or decides to retire it.
-**Active branch:** `main` on both remotes (GitLab's `main` is protected, Maintainer-only push,
-force-push disabled; GitHub's `main` has no branch protection configured).
-**Latest commit — GitHub (`github/main`), Nov 23 2026:** `9fd9243` — "Add all People/Research/Contact
-content updates, memory bank, and GitHub Pages deploy workflow" (36 files; this was the first
-time several sessions' worth of local-only changes — People accordion, entry years, Research
-diagram, Contact address, memory-bank itself — were committed/pushed anywhere; they had never
-reached GitLab).
-**Latest commit — GitLab (`origin/main`):** still `688ff5c` — GitLab was deliberately NOT pushed
-to during this migration (only GitHub was). GitLab is now **behind** GitHub by one commit
-(missing all the content/memory-bank work above) until/unless the user asks for it to be synced
-too.
-**Hosting (live now):** GitHub Pages, `https://yifeidong-research.github.io/aisea-lab-website/`
-— auto-deployed via `.github/workflows/deploy.yml` on every push to GitHub `main`. **Known
-limitation, accepted by user:** the site uses absolute root paths everywhere (`/people/`,
-`/_astro/...`, `/favicon.svg`), so at this subpath URL the CSS/images/nav all 404 — this will
-self-resolve once a custom domain is attached (same as how `fmlab.org`/`hcai-lab.com` are hosted
-on GitHub Pages/Netlify respectively, not at a subpath). No Astro `base` workaround was added;
-user explicitly chose to leave it broken at the interim URL rather than add temporary config.
+**Repo (public GitHub, `origin`):** `https://github.com/yifeidong-research/aisea-lab-website.git`
+— owner account `yifeidong-research` (user's personal GitHub). This is now the **sole** git
+remote; UTS GitLab's local `origin` reference was removed on Nov 23 2026 (user: "we only need
+github as the git storage"). The GitLab **project itself was NOT deleted** — it still exists on
+UTS's servers at `https://code.research.uts.edu.au/144164/aisea-lab-website.git`, just no longer
+referenced by this local clone; deleting the remote project would need separate action (UTS
+GitLab credentials Cline doesn't have, and is irreversible) if the user ever wants that too.
+**Active branch:** `main`, tracking `origin/main` (GitHub) — no branch protection configured.
+**Latest commit:** `a178b28` — "Update memory bank: document GitHub migration and open security
+items".
+**Live site:** **https://www.aisealab.org** — custom domain fully configured and verified (Nov
+23 2026): DNS at Porkbun (4 A records at apex → GitHub Pages IPs `185.199.108-111.153`; CNAME
+`www` → `yifeidong-research.github.io.`), GitHub Pages custom domain set via API (`cname:
+www.aisealab.org`), Let's Encrypt certificate auto-issued and `https_enforced: true`. Verified:
+`http://aisealab.org` → 301 → `https://www.aisealab.org` → 200; CSS/images/nav all load
+correctly now that the site is served from a domain root (resolves the subpath-breakage issue
+noted during the interim `github.io/aisea-lab-website/` period). Auto-deployed via
+`.github/workflows/deploy.yml` on every push to `main`.
 **Run command:** `npm ci && npm run check && npm run build && npm run preview` (Node ≥22.12.0)
 
 ---
@@ -49,46 +42,49 @@ user explicitly chose to leave it broken at the interim URL rather than add temp
   choice, see `systemPatterns.md`).
 - People/Publications/Projects are added only with confirmed, real information — never
   fabricated. UTS logo requires separate authorisation (not yet added).
-- GitLab project must stay **Private**; never force-push to `main`.
+- **GitHub repo must stay Public** (required for free GitHub Pages on a personal account) —
+  this superseded the earlier "GitLab must stay Private" rule once the user migrated the active
+  deployment target to GitHub (Nov 23 2026). The original UTS GitLab project (now unreferenced
+  locally) should still be treated as Private if it's ever revisited.
 - No Azure resource may be provisioned, and no `SWA_CLI_DEPLOYMENT_TOKEN`/`AZURE_SWA_URL`
-  GitLab CI/CD variable may be set, without explicit user authorisation (UTS public-hosting
-  clearance still pending as of last status check).
-- `.au`/`.com.au` domain registration cannot go through Azure App Service Domains (only
-  com/net/co.uk/org/nl/in/biz/org.uk/co.in supported) — needs an auDA-accredited external
-  registrar, likely under UTS's own account for eligibility.
+  GitLab CI/CD variable may be set, without explicit user authorisation. **This is now largely
+  moot** — the user migrated the live deployment to GitHub Pages (Nov 23 2026) rather than
+  waiting on UTS Azure clearance; revisit only if the user explicitly wants to add/switch to an
+  Azure deployment later.
+- Domain registration must go through an independent registrar (Porkbun used, Nov 23 2026) —
+  Azure App Service Domains was considered and explicitly ruled out: it requires a *paid* App
+  Service tier (incompatible with the Static Web Apps Free plan this project was originally
+  scoped for, and now moot since hosting moved to GitHub Pages anyway) and doesn't integrate
+  with GitHub Pages hosting regardless.
 - **GitHub Personal Access Tokens must never be embedded in git remote URLs or committed
   anywhere** — use `https://github.com/<owner>/<repo>.git` (no credentials in the URL) for the
-  `github` remote; authenticate interactively or via a one-off `-c credential.helper=` override
+  `origin` remote; authenticate interactively or via a one-off `-c credential.helper=` override
   per push if a token is needed again. User should revoke/rotate any PAT shared in chat once the
-  immediate task is done (standing hygiene reminder, not a one-time fix).
+  immediate task is done (standing hygiene reminder, not a one-time fix — **still not confirmed
+  done** as of Nov 23 2026, see Status Snapshot).
+- Lab-related expenses (e.g. domain registration) require director approval before purchase —
+  confirmed obtained from Fang Chen for the `aisealab.org` registration (Nov 23 2026); keep this
+  precedent in mind for any future paid service (premium DNS, email hosting, etc.).
 
 ---
 
 ## Status Snapshot (as of Nov 23 2026)
 - Website: built, type-checked, previewed — 0 errors, 0 vulnerabilities (astro upgraded
   6.4.8 → 7.4.12 to fix a critical RCE + XSS advisories).
-- **GitHub (new, Nov 23 2026):** public repo `yifeidong-research/aisea-lab-website` created via
-  the GitHub REST API using a user-supplied fine-grained PAT (Contents + Administration + Pages +
-  Workflows: Read and write). All locally-uncommitted work pushed as commit `9fd9243`. GitHub
-  Pages enabled with `build_type: workflow`; `.github/workflows/deploy.yml` (checkout → npm ci →
-  `npm run check` → `npm run build` → upload-pages-artifact → deploy-pages) ran automatically on
-  push and completed with `conclusion: success`. Live at
-  `https://yifeidong-research.github.io/aisea-lab-website/` — HTML returns 200, but CSS/
-  favicon/images/nav all 404 due to the site's absolute-root-path convention vs. this subpath
-  URL (see `projectbrief.md`'s Hosting note above); user accepted this as temporary, pending a
-  custom domain. The PAT used was shared directly in chat — user was advised to rotate the
-  GitHub account password (was also pasted in chat) and revoke/regenerate the PAT once done;
-  not confirmed done as of this session.
-- GitLab: unchanged since Nov 18 — still at commit `688ff5c`, no runner currently assigned (see
-  `systemPatterns.md`), kept as a fallback per user's explicit choice not to delete it yet.
-- Azure: subscription (`Azure subscription 1`, UTS tenant) confirmed technically eligible for
-  Static Web Apps Free (user is subscription Owner, PayAsYouGo quota, no blocking policy/
-  locks/budgets found) — **nothing provisioned**, pending UTS hosting clearance + user
-  go-ahead. GitHub Pages is now a live, working alternative/parallel path while that's pending.
-- Domain: not yet chosen/ordered. Once chosen, DNS should point at GitHub Pages (A records to
-  GitHub's fixed IPs `185.199.108-111.153` for the apex + CNAME to
-  `yifeidong-research.github.io` for `www`) rather than Azure, unless the user later decides to
-  switch the live site back to Azure SWA.
+- **Hosting: GitHub Pages, live at `https://www.aisealab.org`** (see projectbrief's Live site
+  note above for full verification detail). This is now the lab's actual public website.
+- **Git: GitHub only.** UTS GitLab project still exists remotely but is no longer referenced by
+  this local clone (see Repo note above) — not deleted, just disconnected.
+- **Domain: `aisealab.org` purchased** from Porkbun (Nov 23 2026; director-approved lab expense,
+  paid via UTS card, registered under the user's personal email for administrative continuity)
+  and fully wired to GitHub Pages with automatic HTTPS.
+- Azure: subscription (`Azure subscription 1`, UTS tenant) was confirmed technically eligible for
+  Static Web Apps Free earlier in the project, but **nothing was ever provisioned** — the user
+  chose the GitHub Pages path instead rather than continuing to wait on UTS hosting clearance.
+  Revisit only if the user explicitly asks to add/switch to Azure in the future.
+- **Open security item**: the user's GitHub account password and a Personal Access Token were
+  both pasted in chat during the Nov 23 migration. Repeatedly advised rotating/revoking both —
+  **not yet confirmed done**. Keep raising this proactively until resolved.
 - Content: People page now has 17 entries across 4 categories (Core Members, Collaborators, PhD
   Students, Master of Research Students) with a collapsible accordion UI and `entryYear`-based
   ordering — see `productContext.md` for the full roster. Publications page has 45 real papers

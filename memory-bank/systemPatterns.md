@@ -1,38 +1,62 @@
 # AI-SEA Lab Website — System Patterns
 
-## Hosting/VCS: dual-remote (UTS GitLab + personal GitHub), GitHub Pages as the active deploy
-target (Nov 2026)
+## Hosting/VCS: GitHub-only (GitLab local remote removed), live at a custom domain (Nov 2026)
 After researching how two comparable lab sites are hosted (`hcai-lab.com` → Netlify,
 `fmlab.org` → GitHub Pages, both found via `whois`/`dig`/HTTP-header inspection — a reusable
 technique for this kind of due-diligence), and with the Azure/UTS hosting-clearance path still
-pending indefinitely, the user chose to migrate deployment to their own personal GitHub account
-rather than wait. **Decision: keep both remotes, don't delete GitLab.** `origin` = UTS GitLab
-(`code.research.uts.edu.au`, private, unchanged); `github` = new public repo
-`yifeidong-research/aisea-lab-website`. GitHub is now the **active, live** deploy target
-(GitHub Actions → GitHub Pages, auto on push to `main`); GitLab is a **fallback/backup**, not
-currently receiving pushes — the two `main` branches are allowed to diverge/fall out of sync
-until the user decides otherwise (there is no dual-push automation). GitHub Pages was chosen
-over Netlify (the other proven option) simply because it's zero-additional-signup — already
-extending the user's own existing GitHub account — and because `fmlab.org` is a direct precedent
-for the exact Astro-style static-build-then-deploy flow. Credentials for GitHub operations
-(PATs) must **never** be embedded in git remote URLs persistently — see the token-handling
-decision below.
+pending indefinitely, the user migrated deployment to their own personal GitHub account
+(`yifeidong-research/aisea-lab-website`, public repo, GitHub Actions → GitHub Pages auto-deploy
+on push to `main`). Initially UTS GitLab was kept as a fallback remote; **later the same
+session, the user explicitly said "we only need github as the git storage" and the local
+GitLab `origin` reference was removed** (`git remote remove origin` → renamed the `github`
+remote to `origin` → fixed the `main` branch's upstream tracking). The GitLab *project itself*
+was not deleted (no credentials to do so, and it's irreversible) — it's simply dormant,
+unreferenced by this local clone. **GitHub is now the sole, single source of truth** for both
+code storage and deployment. A custom domain, `aisealab.org` (purchased from Porkbun, a
+director-approved lab expense), is fully wired to the GitHub Pages site with automatic Let's
+Encrypt HTTPS — this resolved the interim subpath-breakage issue that existed while the site
+was only reachable at `yifeidong-research.github.io/aisea-lab-website/` (absolute root paths
+like `/_astro/...`/`/people/` don't work under a subpath, only under a true domain root).
+Revisit Azure only if the user explicitly asks to add/switch to it later — it is not a pending
+blocker on anything anymore.
 
 ## GitHub token handling: never persist in remote URLs, remove immediately after use (Nov 2026)
-When a user-supplied fine-grained PAT is needed for a one-off push (e.g. the initial GitHub
-migration), the pattern is: `git remote add github https://<token>@github.com/...` → `git push`
-→ **immediately** `git remote remove github` → re-add a clean credential-free
+When a user-supplied fine-grained PAT is needed for a one-off push or API call (e.g. the GitHub
+migration, or configuring Pages' custom domain/HTTPS), the pattern for *git* operations
+specifically is: `git remote add <name> https://<token>@github.com/...` → `git push` →
+**immediately** `git remote remove <name>` → re-add a clean credential-free
 `https://github.com/<owner>/<repo>.git` remote for future reference. This avoids the token
-sitting in `.git/config` (a plaintext file) any longer than the single push requires. Separately
-flagged to the user: GitHub fine-grained PATs need an explicit **"Workflows: Read and write"**
-repository permission (distinct from Contents/Administration/Pages) to push anything under
+sitting in `.git/config` (a plaintext file) any longer than the single push requires. (Note:
+git's `osxkeychain` credential helper will still cache the token in the user's macOS Keychain
+after first successful auth over HTTPS — this is normal/expected git behavior, not a leak
+caused by Cline, but worth mentioning to the user as part of a full credential-rotation
+cleanup.) For *REST API* calls (e.g. `PUT /repos/.../pages`), the token is passed only as an
+`Authorization` header per-request — never written to any file at all. Separately flagged to
+the user: GitHub fine-grained PATs need an explicit **"Workflows: Read and write"** repository
+permission (distinct from Contents/Administration/Pages) to push anything under
 `.github/workflows/**` — a push without it is rejected with `refusing to allow a Personal Access
 Token to create or update workflow ... without workflow scope`; this is editable on the existing
 token in place (no need to regenerate a new token string). If a user pastes their actual account
 password (not a token) into chat, treat that as a security incident requiring an explicit
 recommendation to rotate the password immediately, separate from whatever the original request
 was — a password cannot be used for git/API auth anyway (GitHub removed that in 2021), so there
-is no technical reason to ever ask for one.
+is no technical reason to ever ask for one. **As of Nov 23 2026 this remains an open item** —
+the user has not yet confirmed rotating the password or revoking the PAT shared earlier in the
+session, despite repeated reminders; keep raising it.
+
+## Domain purchasing: independent registrar, not Azure App Service Domains (Nov 2026)
+Even though `.org` is one of the few TLDs Azure App Service Domains supports
+(`com/net/co.uk/org/nl/in/biz/org.uk/co.in`), it was explicitly ruled out for this project:
+(1) it requires a *paid* App Service plan tier, incompatible with the Static Web Apps Free plan
+this project was originally scoped around; (2) it requires removing the subscription spending
+limit / having sufficient billing history; (3) most importantly, it provides no actual benefit
+once hosting moved to GitHub Pages — DNS still needs the same manual A-record/CNAME pointing at
+GitHub regardless of which registrar sold the domain. Used **Porkbun** instead (free WHOIS
+privacy + SSL bundled, transparent pricing) — any ICANN-accredited registrar would have worked
+equally well; Porkbun was simply the first one researched that had no pricing-upsell friction.
+`.org` was chosen over `.au`/`.com.au` specifically to avoid auDA eligibility requirements
+(ABN/Australian-presence proof) that would otherwise apply.
+
 
 ## Content management: single TypeScript data file, no CMS (Nov 2026)
 All editable content (mission, research themes, people, publications, projects, contact email)

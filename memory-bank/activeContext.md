@@ -11,6 +11,8 @@
 
 ## Nov 23 2026 — Index
 
+- `[nov23-6]` Purchased `aisealab.org`, wired to GitHub Pages with auto HTTPS (verified live),
+  removed local GitLab remote so GitHub is sole git storage — done → `progress/2026-11.md#nov23-6`
 - `[nov23-5]` Migrated to a new public GitHub repo (`yifeidong-research/aisea-lab-website`) with
   GitHub Actions → GitHub Pages auto-deploy; GitLab kept as fallback — done (core migration), but
   see open items below → `progress/2026-11.md#nov23-5`
@@ -48,29 +50,12 @@
 
 ### Open items carried forward from Nov 21/23
 
-- **🔴 GitHub credential rotation (new, security-sensitive)**: the user's actual GitHub account
-  password and a Personal Access Token were both pasted directly in chat during the Nov 23
-  migration (`[nov23-5]`). Cline repeatedly advised rotating the password and
+- **🔴 GitHub credential rotation (security-sensitive, still open)**: the user's actual GitHub
+  account password and a Personal Access Token were both pasted directly in chat during the
+  Nov 23 migration/domain work (`[nov23-5]`, `[nov23-6]`). The PAT is still valid/was reused as
+  recently as the domain-wiring step. Cline has repeatedly advised rotating the password and
   revoking/regenerating the PAT — **not confirmed done**. Ask about this proactively next
   session if it hasn't come up.
-- **GitLab vs GitHub sync**: GitLab (`origin/main`) is now behind GitHub (`github/main`) by one
-  large commit (`9fd9243`, all the recent People/Research/Contact/memory-bank work). No decision
-  yet on whether to push the same commit to GitLab to keep it current, or let it lapse toward
-  eventual deletion.
-- **Custom domain for GitHub Pages**: not yet chosen/ordered. Until it is, the live
-  `https://yifeidong-research.github.io/aisea-lab-website/` URL renders broken (no CSS, 404
-  nav/images) because the site's absolute-root-path convention assumes domain-root hosting —
-  user explicitly accepted this as temporary rather than adding an Astro `base` workaround.
-- **GitLab CI/CD runner**: none currently assigned to the project. Any future push will sit
-  `pending` until a project-scoped runner is registered and run again (ask the user first each
-  time — do not assume standing permission from `[nov16-2]` carries forward automatically).
-- **Azure hosting**: not provisioned. Still waiting on UTS public-hosting clearance + the
-  user's explicit go-ahead before registering `Microsoft.Web` or creating any SWA resource.
-  GitHub Pages is now a live working alternative while this is pending.
-- **Domain**: not chosen or ordered. Still waiting on the user's preferred domain name,
-  registrar choice (likely needs to go through UTS's own account for `.au`/`.com.au`
-  eligibility), and explicit approval of price/renewal terms. (Same open item as the custom
-  domain above — whichever domain is chosen should point at GitHub Pages per current plan.)
 - **Individual Projects content**: Projects page still shows the placeholder notice — no
   confirmed individual project write-ups added yet.
 - **UTS logo**: not added — needs separate authorisation from the user before any logo image
@@ -78,3 +63,7 @@
 - **Future personal website**: user mentioned wanting a personal site on the same GitHub
   account eventually — unblocked (1 user/org site + unlimited project sites per account
   confirmed), but not started.
+- **UTS GitLab project**: still exists remotely (untouched, just no longer referenced by the
+  local clone). No decision requested yet on whether to ever formally delete it.
+- **Azure**: no longer the active plan (GitHub Pages is live and working) — only relevant again
+  if the user explicitly wants to add/switch to Azure in the future; not a pending blocker.

@@ -4,6 +4,9 @@
 > to the full detail in the matching monthly shard (`grep '\[id\]' memory-bank/progress/<month>.md`).
 
 ## 2026-11
+- `[nov23-6]` Nov 23 2026 — purchased `aisealab.org` (director-approved), wired it to GitHub
+  Pages (DNS + custom domain + auto HTTPS, verified live), then removed the local GitLab
+  `origin` remote so GitHub is the sole git storage → memory-bank/progress/2026-11.md#nov23-6
 - `[nov23-5]` Nov 23 2026 — migrated to a new public GitHub repo
   (`yifeidong-research/aisea-lab-website`) with GitHub Actions → GitHub Pages auto-deploy;
   GitLab kept as fallback, not deleted — open item: user should rotate/revoke the GitHub
