@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { collaborationIntro, collaborationProcess, collaborationWays, recruitment } from '../content/site';
+const description = 'Ways to work with AI-SEA Lab: industry, government, academia and community collaboration.';
+---
+<Base title="Collaborate" description={description}>
+  <div class="wrap section interior">
+    <PageIntro title="Collaborate" description={description} />
+    <p class="lab-about">{collaborationIntro}</p>
+    <div class="rows">
+      {collaborationWays.map(({ title, audience, detail }, index) => (
+        <section id={`way-${index + 1}`} class="content-row">
+          <div><h2>{title}</h2><p class="project-meta">{audience}</p></div>
+          <p>{detail}</p>
+        </section>
+      ))}
+    </div>
+    <h2 class="areas-heading">How it works</h2>
+    <ol class="process-list">
+      {collaborationProcess.map((step) => <li>{step}</li>)}
+    </ol>
+    <section class="recruitment">
+      <p>Have a problem, a grant or a partnership in mind? Email <a href={`mailto:${recruitment.contactEmail}`}>{recruitment.contactName} ({recruitment.contactEmail})</a>.</p>
+    </section>
+  </div>
+</Base>

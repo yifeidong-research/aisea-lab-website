@@ -17,6 +17,7 @@ export const navigation = [
   { label: 'People', href: '/people/' },
   { label: 'Publications', href: '/publications/' },
   { label: 'Projects', href: '/projects/' },
+  { label: 'Collaborate', href: '/collaborate/' },
   { label: 'Contact', href: '/contact/' },
 ];
 
@@ -61,6 +62,44 @@ export const recruitment = {
   contactName: 'Dr Yifei Dong',
   contactEmail: 'yifei.dong@uts.edu.au',
 };
+
+export type CollaborationWay = { title: string; audience: string; detail: string };
+
+export const collaborationIntro = 'AI-SEA Lab works with industry, government, academia and community organisations in a few different ways, depending on your goal and timeline. Every collaboration begins with a short conversation and ends with a written agreement covering scope, deliverables, timeline, data handling, intellectual property and (where relevant) authorship — before any work starts.';
+
+export const collaborationWays: CollaborationWay[] = [
+  {
+    title: 'Production-readiness engineering support',
+    audience: 'For organisations with a GenAI system that is not yet reliable or production-ready',
+    detail: 'Many organisations have already adopted generative AI, but find the resulting system unreliable, hard to evaluate, or risky to scale. We apply systems engineering, evaluation methodology and assurance practice to take an existing GenAI prototype or pilot to dependable, accountable production operation, as a commissioned project with scope, deliverables and IP terms agreed in writing.',
+  },
+  {
+    title: 'Industry-sponsored PhD candidature',
+    audience: 'For organisations seeking a long-term research partnership tied to a real problem',
+    detail: 'An organisation funds a scholarship for a PhD candidate to research one of its real operational problems under AI-SEA Lab supervision — either sponsoring an existing staff member\u2019s candidature, or having the lab help select a suitable candidate. The candidate earns a genuine, independently examined doctorate; the sponsoring organisation gains a trained specialist and a solved problem.',
+  },
+  {
+    title: 'Joint grant applications',
+    audience: 'For organisations and institutions wanting to fund research together',
+    detail: 'We partner on grant proposals as a research partner or lead investigator, from early scoping through to submission, including industry-linked and government-funded schemes. This is often the funding pathway for the other ways of working with us listed here.',
+  },
+  {
+    title: 'Visiting researchers and research collaborators',
+    audience: 'For academics and research-active practitioners seeking a genuine research partnership',
+    detail: 'Joint research, shared methods and datasets, and co-authored publications with visiting researchers and collaborators who bring a real, assessable contribution to the work. Authorship follows standard academic criteria \u2014 substantial contribution to design, analysis or writing \u2014 rather than being offered in exchange for a credential.',
+  },
+  {
+    title: 'Community and translational research support',
+    audience: 'For clinics, schools, government and not-for-profit organisations with a real-world problem',
+    detail: 'Research and project support for community, government and not-for-profit organisations applying AI responsibly in real operating settings, consistent with the lab\u2019s focus on dependable, accountable, real-world deployment.',
+  },
+];
+
+export const collaborationProcess = [
+  'Email us with your problem, your organisation, and your timeline.',
+  'A short scoping conversation to discuss goals, data and the best way to work together.',
+  'A written agreement covering scope, deliverables, timeline, data handling, IP and (where relevant) authorship, before any work starts.',
+];
 
 export type Profile = {
   name: string;

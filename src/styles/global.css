@@ -109,6 +109,9 @@ nav a:hover, nav a[aria-current] { border-bottom-color: var(--ink); }
 .areas-list { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem 1.5rem; }
 .areas-list li { padding-left: 1rem; position: relative; color: var(--secondary); }
 .areas-list li::before { content: '\2014'; position: absolute; left: 0; top: 0; color: var(--line); }
+.process-list { list-style: none; counter-reset: process; margin: 1.2rem 0 0; padding: 0; display: grid; gap: .9rem; max-width: 42rem; }
+.process-list li { position: relative; padding-left: 2.3rem; counter-increment: process; }
+.process-list li::before { content: counter(process); position: absolute; left: 0; top: -.05rem; width: 1.6rem; height: 1.6rem; border: 1px solid var(--line); border-radius: 2px; display: grid; place-items: center; font-size: .78rem; font-weight: 600; color: var(--secondary); }
 .recruitment { margin-top: 1.6rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
 .recruitment p { margin: 0; }
 .recruitment a { font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; }
